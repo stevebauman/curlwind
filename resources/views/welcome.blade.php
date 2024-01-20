@@ -16,7 +16,7 @@
             </h2>
 
             <h3 class="text-center text-slate-400 font-medium text-xl pt-8 text-balance">
-                Curwind allows you to generate Tailwind stylesheets on demand to get only the CSS utilities you need. Generated stylesheets are cached indefinitely so your site stays <i>fast</i>.
+                Curlwind allows you to generate Tailwind stylesheets on demand to get only the CSS utilities you need. Generated stylesheets are cached indefinitely so your site stays <i>fast</i>.
             </h3>
 
             <x-step
