@@ -11,11 +11,11 @@
                 <h1 class="text-white text-4xl font-semibold">{{ $code }} - {{ $title  }}</h1>
             </div>
 
-            @if($exception)
+            @isset($exception)
             <div class="pt-8 font-semibold text-slate-300">
                 {{ $exception->getMessage() }}
             </div>
-            @endif
+            @endisset
         </div>
     </div>
 </x-layout>
