@@ -20,7 +20,7 @@
     <!-- Facebook OG Tags -->
     <meta property="og:title" content="Curlwind" />
     <meta property="og:description" content="A no-build Tailwind utility class generator." />
-    <meta property="og:image" content="{{ asset('og_facebook.png') }}" /> <!-- 1200 x 630 pixels -->
+    <meta property="og:image" content="{{ asset('og_facebook.png') }}" />
     <meta property="og:url" content="https://curlwind.com" />
     <meta property="og:type" content="website" />
 
