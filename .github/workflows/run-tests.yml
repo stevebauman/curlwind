@@ -35,6 +35,9 @@ jobs:
       - name: Set executable permissions on tailwind binaries
         run: chmod +x ./bin/*
 
+      - name: Copy env file
+        run: cp .env.example .env
+
       - name: Install dependencies
         run: composer install
 
