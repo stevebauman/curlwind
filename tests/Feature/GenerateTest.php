@@ -138,7 +138,7 @@ test('it can generate tailwind utilities with an asterisk to match multiple', fu
     }
 });
 
-test('it can generate tailwind utilities with an asterisk to match multiple with variants', function () {
+test('i', function () {
     $content = $this->get(route('cdn', ['classes' => 'w-0:sm|md|hover']))
         ->assertSuccessful()
         ->streamedContent();
