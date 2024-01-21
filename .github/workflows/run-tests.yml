@@ -32,6 +32,9 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
+      - name: Set executable permissions on tailwind binaries
+        run: chmod +x ./bin/*
+
       - name: Install dependencies
         run: composer install
 
