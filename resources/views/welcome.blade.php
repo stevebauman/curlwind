@@ -63,8 +63,18 @@
                 class="pt-6"
                 language="html"
                 title="Exclude Preflight"
-                description="Generate Stylesheets without Tailwind's Preflight CSS."
+                description="Generate stylesheets without Tailwind's Preflight CSS."
                 example="examples/exclude-preflight.html"
+            />
+
+            <x-step
+                end
+                number="+"
+                class="pt-6"
+                language="html"
+                title="Unminified CSS"
+                description="Generate stylesheets unminified."
+                example="examples/unminified-css.html"
             />
         </div>
     </div>
