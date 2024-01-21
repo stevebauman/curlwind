@@ -40,3 +40,5 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/pest
+        env:
+          TORCHLIGHT_TOKEN: ${{ secrets.TORCHLIGHT_TOKEN }}
