@@ -30,7 +30,7 @@ class GenerateRequest extends FormRequest
             ],
             'classes.*' => [
                 // {class}:{variants}
-                'regex:/^[a-zA-Z0-9*-]+(:([a-z0-9]+(\|[a-z0-9]+)*))?$/u',
+                'regex:/^[a-z0-9*-\/]+(:([a-z0-9]+(\|[a-z0-9]+)*))?$/u',
             ],
         ];
     }

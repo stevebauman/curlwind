@@ -81,6 +81,7 @@ class GenerateController extends Controller
             $regex = str($matcher)
                 ->replace('*', '[a-z0-9]+')
                 ->replace('-', '\\-')
+                ->replace('/', '\\/')
                 ->tap(fn ($regex) => json_encode($regex))
                 ->replaceFirst('"', '')
                 ->replaceLast('"', '');
