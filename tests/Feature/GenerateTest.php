@@ -147,3 +147,12 @@ test('it can generate tailwind utilities with an asterisk to match multiple with
     expect($content)->toContain("sm\:w-0");
     expect($content)->toContain("md\:w-0");
 });
+
+
+test('it can generate tailwind utility with variant having hyphen', function () {
+    $content = $this->get(route('cdn', ['classes' => 'p-0:group-hover']))
+        ->assertSuccessful()
+        ->streamedContent();
+
+    expect($content)->toContain("group-hover\:p-0");
+});
