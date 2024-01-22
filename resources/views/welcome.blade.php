@@ -72,6 +72,16 @@
                 number="+"
                 class="pt-6"
                 language="html"
+                title="Prefixed Utilities"
+                description="Generate utility classes with a prefix."
+                example="examples/prefixed-utilities.html"
+            />
+
+            <x-step
+                end
+                number="+"
+                class="pt-6"
+                language="html"
                 title="Unminified CSS"
                 description="Generate stylesheets unminified."
                 example="examples/unminified-css.html"
