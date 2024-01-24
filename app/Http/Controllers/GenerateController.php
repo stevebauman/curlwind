@@ -109,7 +109,7 @@ class GenerateController extends Controller
             safelist: [$safelist],
             corePlugins: {
                 preflight: $preflight,
-            },
+            }
         };
         JAVASCRIPT;
     }
