@@ -86,6 +86,16 @@
                 description="Generate stylesheets unminified."
                 example="examples/unminified-css.html"
             />
+
+            <x-step
+                end
+                number="+"
+                class="pt-6"
+                language="html"
+                title="Enable Plugins"
+                description="Enable built-in Tailwind plugins."
+                example="examples/enable-plugins.html"
+            />
         </div>
     </div>
 
