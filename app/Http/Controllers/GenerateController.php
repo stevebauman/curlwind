@@ -18,9 +18,10 @@ class GenerateController extends Controller
     {
         $prefix = $request->input('prefix') ?? null;
 
+        $plugins = Arr::sort($request->input('plugins'));
         $classes = Arr::sort($request->input('classes'));
 
-        $filename = md5(implode(array_merge($classes, [
+        $filename = md5(implode(array_merge($classes, $plugins, [
             $preflight = $request->boolean('preflight', true),
             $minify = $request->boolean('minify', true),
         ])));
@@ -34,7 +35,7 @@ class GenerateController extends Controller
 
         Storage::disk('js')->put(
             "$filename.js",
-            $this->generateTailwindConfig($prefix, $classes, $preflight)
+            $this->generateTailwindConfig($prefix, $classes, $plugins, $preflight)
         );
 
         $binary = match (PHP_OS_FAMILY) {
@@ -73,7 +74,7 @@ class GenerateController extends Controller
     /**
      * Generate a new Tailwind config file.
      */
-    protected function generateTailwindConfig(?string $prefix, array $classes, bool $preflight = true): string
+    protected function generateTailwindConfig(?string $prefix, array $classes, array $plugins = [], bool $preflight = true): string
     {
         $patterns = array_map(function (string $pattern) {
             [$matcher, $variants] = array_pad(explode(':', $pattern), 2, null);
@@ -95,11 +96,16 @@ class GenerateController extends Controller
 
         $safelist = implode(",\n", $patterns);
 
+        $plugins = implode(",\n", array_map(fn (string $plugin) => (
+            "require('@tailwindcss/$plugin')"
+        ), $plugins));
+
         $preflight = $preflight ? 'true' : 'false';
 
         return <<<JAVASCRIPT
         module.exports = {
             prefix: "$prefix",
+            plugins: [$plugins],
             safelist: [$safelist],
             corePlugins: {
                 preflight: $preflight,

@@ -20,6 +20,13 @@ class GenerateRequest extends FormRequest
             'preflight' => [
                 'boolean'
             ],
+            'plugins' => [
+                'array',
+            ],
+            'plugins.*' => [
+                'distinct',
+                'in:forms,typography,aspect-ratio,container-queries',
+            ],
             'prefix' => [
                 'string',
                 'max:10',
@@ -29,7 +36,8 @@ class GenerateRequest extends FormRequest
                 'array',
             ],
             'classes.*' => [
-                // {class}:{variant|variant}
+                'distinct',
+                // matches {class}:{variant|variant}
                 'regex:/^[a-z0-9*-\/]+(:([a-z0-9-]+(\|[a-z0-9-]+)*))?$/u',
             ],
         ];
@@ -42,6 +50,7 @@ class GenerateRequest extends FormRequest
     {
         $this->merge([
             'classes' => $this->csv('classes'),
+            'plugins' => $this->csv('plugins'),
         ]);
     }
 

@@ -156,3 +156,16 @@ test('it can generate tailwind utility with variant having hyphen', function () 
 
     expect($content)->toContain("group-hover\:p-0");
 });
+
+test('it can generate with built-in plugins', function (string $plugin, string $classes, string $expected) {
+    $content = $this->get(route('cdn', ['classes' => $classes, 'plugins' => $plugin]))
+        ->assertSuccessful()
+        ->streamedContent();
+
+    expect($content)->toContain($expected);
+})->with([
+    ['forms', '', 'select'],
+    ['typography', 'prose', '.prose'],
+    ['aspect-ratio', 'aspect-w-16', '.aspect-w-16'],
+    ['container-queries', 'container', '.container'],
+]);
