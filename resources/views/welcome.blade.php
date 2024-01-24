@@ -93,7 +93,7 @@
                 class="pt-6"
                 language="html"
                 title="Enable Plugins"
-                description="Enable built-in Tailwind plugins."
+                description="Generate stylesheets with built-in Tailwind plugins enabled."
                 example="examples/enable-plugins.html"
             />
         </div>
