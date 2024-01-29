@@ -84,8 +84,7 @@ class GenerateController extends Controller
                 ->replace('-', '\\-')
                 ->replace('/', '\\/')
                 ->tap(fn ($regex) => json_encode($regex))
-                ->replaceFirst('"', '')
-                ->replaceLast('"', '');
+                ->unwrap('"');
 
             $variants = json_encode($variants ? explode('|', $variants) : []);
 
