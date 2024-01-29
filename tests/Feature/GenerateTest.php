@@ -30,6 +30,14 @@ test('it returns error when given invalid characters', function (string $classes
     '}',
     '\\',
     '=',
+    ';',
+    ':',
+    '<',
+    '>',
+    '?',
+    '`',
+    '~',
+    'a b',
 ]);
 
 test('it only allows specific characters', function (string $classes) {
