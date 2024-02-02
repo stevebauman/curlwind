@@ -7,7 +7,7 @@
     'end' => false,
 ])
 
-<div {{ $attributes->merge(['class' => 'relative mx-auto w-full max-w-2xl px-5']) }}>
+<div {{ $attributes->merge(['class' => 'relative mx-auto w-full max-w-3xl px-5']) }}>
     <div>
         <div class="flex items-center gap-5 font-semibold">
             <div class="grid h-10 w-10 place-items-center rounded-full bg-slate-600 text-white text-lg shadow border-t border-slate-500">
