@@ -67,6 +67,7 @@ class GenerateController extends Controller
     protected function response(string $css): StreamedResponse
     {
         return response()->stream(fn () => readfile($css), 200, [
+            'Cache-Control' => 'public, max-age=31536000, immutable',
             'Content-Type' => 'text/css',
         ]);
     }
