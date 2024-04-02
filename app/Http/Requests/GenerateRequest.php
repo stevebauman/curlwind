@@ -67,8 +67,8 @@ class GenerateRequest extends FormRequest
     /**
      * Handle a failed validation attempt.
      */
-    protected function failedValidation(Validator $validator)
+    protected function failedValidation(Validator $validator): void
     {
-        return abort(422, $validator->errors()->first());
+        abort(422, $validator->errors()->first());
     }
 }
