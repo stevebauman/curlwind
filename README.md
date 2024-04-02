@@ -31,9 +31,9 @@ Add the stylesheet tag to your site's head tag:
 
 ### Attach Classes
 
-Attach the 'classes' query parameter to URL receive a stylesheet with only the classes you need.
+Attach the `classes` query parameter to URL receive a stylesheet with only the classes you need.
 
-Use wildcards to match multiple classes:
+Use commas and wildcards to match multiple classes:
 
 ```html
 <link rel="stylesheet" href="https://cdn.curlwind.com?classes=p-*,m-*">
