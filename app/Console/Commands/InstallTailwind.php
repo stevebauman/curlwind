@@ -15,7 +15,7 @@ class InstallTailwind extends Command
      *
      * @var string
      */
-    protected $signature = 'tailwind:install';
+    protected $signature = 'tailwind:install {--force : Overwrite existing executable}';
 
     /**
      * The console command description.
@@ -36,6 +36,12 @@ class InstallTailwind extends Command
         };
 
         $outputFile = base_path("bin/$binary");
+
+        if (file_exists($outputFile) && ! $this->option('force')) {
+            $this->error("The file $outputFile already exists. Use the --force option to overwrite it.");
+
+            return static::FAILURE;
+        }
 
         $this->info('Downloading TailwindCSS...');
 

@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(InstallTailwind::class)->weekly();
+        $schedule->command(InstallTailwind::class, ['--force' => true])->weekly();
     }
 
     /**
