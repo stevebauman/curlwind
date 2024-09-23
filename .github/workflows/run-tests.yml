@@ -32,14 +32,17 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
-      - name: Set executable permissions on tailwind binaries
-        run: chmod +x ./bin/*
-
       - name: Copy env file
         run: cp .env.example .env
 
       - name: Install dependencies
         run: composer install
+
+      - name: Install tailwind
+        run: php artisan tailwind:install
+
+      - name: Set executable permissions on tailwind binaries
+        run: chmod +x ./bin/*
 
       - name: Execute tests
         run: vendor/bin/pest
