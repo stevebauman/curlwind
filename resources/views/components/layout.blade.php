@@ -39,8 +39,7 @@
             route('cdn', [
                 'classes' => implode(',', [
                     'p-*:md',
-                    'py-*',
-                    'pt-*',
+                    'p*-*',
                     'm-*',
                     'px-5',
                     'my-8',

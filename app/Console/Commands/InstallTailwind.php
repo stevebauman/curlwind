@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Support\Number;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class InstallTailwind extends Command
@@ -29,11 +30,13 @@ class InstallTailwind extends Command
      */
     public function handle(): int
     {
-        $binary = match (PHP_OS_FAMILY) {
-            'Darwin' => 'tailwindcss-macos-x64',
-            'Linux' => 'tailwindcss-linux-x64',
-            default => throw new Exception('Unsupported OS.'),
+        if (! $binary = $this->getBinaryName()) {
+            throw new Exception('Unsupported OS.');
         };
+
+        if (! $release = $this->getLatestRelease()) {
+            throw new Exception('Unable to determine the latest TailwindCSS release.');
+        }
 
         $outputFile = base_path("bin/$binary");
 
@@ -49,7 +52,7 @@ class InstallTailwind extends Command
             'sink' => $outputFile,
             'progress' => $this->onProgress(...),
         ])->timeout(0)->throw()->get(
-            "https://github.com/tailwindlabs/tailwindcss/releases/latest/download/$binary"
+            "https://github.com/tailwindlabs/tailwindcss/releases/download/$release/$binary"
         );
 
         $this->newLine();
@@ -61,6 +64,34 @@ class InstallTailwind extends Command
         $this->info("File permissions set to executable.");
 
         return static::SUCCESS;
+    }
+
+    /**
+     * Get the name of the binary to save for the current OS.
+     */
+    protected function getBinaryName():?string
+    {
+        return match (PHP_OS_FAMILY) {
+            'Darwin' => 'tailwindcss-macos-x64',
+            'Linux' => 'tailwindcss-linux-x64',
+            default => null,
+        };
+    }
+
+    /**
+     * Get the latest (v3.0) release of TailwindCSS.
+     */
+    protected function getLatestRelease(): ?string
+    {
+        $releases = Http::get('https://api.github.com/repos/tailwindlabs/tailwindcss/releases')->json();
+
+        $v3Releases = collect($releases)->filter(function ($release) {
+            return Str::startsWith($release['tag_name'] ?? '', 'v3.');
+        });
+
+        $latestV3Release = $v3Releases->sortByDesc('published_at')->first();
+
+        return $latestV3Release['tag_name'] ?? null;
     }
 
     /**
