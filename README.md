@@ -1,7 +1,7 @@
 <p align="center"><a href="https://curlwind.com" target="_blank"><img src="https://curlwind.com/logo-dark.svg" width="200" alt="Curlwind Logo Logo"></a></p>
 
 <p align="center">
-Dynamically generate Tailwind CSS utility stylesheets. 
+Dynamically generate Tailwind (v3) CSS utility stylesheets. 
 </p>
 
 <hr/>
